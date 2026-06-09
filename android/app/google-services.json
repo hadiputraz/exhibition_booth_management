@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1023318160489",
+    "project_id": "exhibition-booth-managem-6e648",
+    "storage_bucket": "exhibition-booth-managem-6e648.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1023318160489:android:fecd6dcb2b341e1c3a9ef8",
+        "android_client_info": {
+          "package_name": "com.hadiputra.exhibition_booth_management"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAik4W4sco2-WNBvGshswuRCcKJBcnvEAE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
