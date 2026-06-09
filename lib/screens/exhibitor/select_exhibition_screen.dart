@@ -18,16 +18,19 @@ class SelectExhibitionScreen extends StatelessWidget {
         centerTitle: true,
       ),
       body: StreamBuilder<QuerySnapshot>(
-        stream:
-            FirebaseFirestore.instance.collection('exhibitions').snapshots(),
+        stream: FirebaseFirestore.instance
+            .collection('exhibitions')
+            .snapshots(),
         builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
+          if (snapshot.connectionState ==
+              ConnectionState.waiting) {
             return const Center(
               child: CircularProgressIndicator(),
             );
           }
 
-          if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+          if (!snapshot.hasData ||
+              snapshot.data!.docs.isEmpty) {
             return const Center(
               child: Text(
                 'No exhibitions found',
@@ -38,25 +41,54 @@ class SelectExhibitionScreen extends StatelessWidget {
           return ListView.builder(
             itemCount: snapshot.data!.docs.length,
             itemBuilder: (context, index) {
-              var exhibition = snapshot.data!.docs[index];
+              var exhibition =
+              snapshot.data!.docs[index];
 
               return Card(
                 margin: const EdgeInsets.all(10),
+                elevation: 3,
                 child: ListTile(
+                  contentPadding:
+                  const EdgeInsets.all(15),
                   title: Text(
                     exhibition['title'],
+                    style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight:
+                      FontWeight.bold,
+                    ),
                   ),
-                  subtitle: Text(
-                    exhibition['location'],
+                  subtitle: Column(
+                    crossAxisAlignment:
+                    CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(height: 8),
+
+                      Text(
+                        exhibition['location'],
+                      ),
+
+                      const SizedBox(height: 8),
+
+                      Text(
+                        ' Start Date: ${exhibition['startDate']}',
+                      ),
+
+                      Text(
+                        ' End Date: ${exhibition['endDate']}',
+                      ),
+                    ],
                   ),
                   trailing: ElevatedButton(
                     onPressed: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => BoothGridScreen(
-                            exhibitionId: exhibition.id,
-                          ),
+                          builder: (context) =>
+                              BoothGridScreen(
+                                exhibitionId:
+                                exhibition.id,
+                              ),
                         ),
                       );
                     },
